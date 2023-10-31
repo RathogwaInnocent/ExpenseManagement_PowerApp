@@ -1,7 +1,7 @@
 # ExpenseManagement_PowerApp
 Expense Managment is a Canvas APP designed and developed within Power APPS with a minimal design of an expense management app. The app allows for users to conveniently keep track of their savings and spending from a single place.
 
-<img width="192" alt="Screenshot_0" src="https://github.com/RathogwaInnocent/ExpenseManagement_PowerApp/assets/17208775/5c4c19be-d2e2-4ffe-a2cc-eaed949114f7">
+<img width="192" alt="Screenshot_0" src="https://github.com/RathogwaInnocent/ExpenseManagement_PowerApp/assets/17208775/532925a8-c98a-497a-bff7-ebf3accc89a2">
 
 >>> This screen is for the pre-loader.
 
