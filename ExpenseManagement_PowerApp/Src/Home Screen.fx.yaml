@@ -1,0 +1,568 @@
+"'Home Screen' As screen":
+    Fill: =gblAppStyles.background.rgba
+
+    cnvHome As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =1136
+        Width: =Parent.Width
+        ZIndex: =1
+
+        cardHome As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            txtBgTop As text:
+                Default: =""
+                DisplayMode: =DisplayMode.View
+                Fill: =gblAppStyles.backgroundAlt.rgba
+                Height: =545
+                RadiusBottomLeft: =50
+                RadiusBottomRight: =50
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =21
+                Width: =640
+                Y: =2
+                ZIndex: =1
+
+            lblExpensesAddedTitle As label:
+                AutoHeight: =true
+                Color: =ColorFade(gblAppStyles.neutralLight.rgba, -30%)
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =gblAppStyles.font.normal
+                Text: ="Total Expenses"
+                Width: =Parent.Width - 40
+                X: =20
+                Y: =20
+                ZIndex: =3
+
+            lblExpensesAdded As label:
+                AutoHeight: =true
+                Color: =gblAppStyles.white.rgba
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =70
+                Size: =gblAppStyles.font.large
+                Text: |-
+                    =$"R {Sum(
+                        Filter(
+                            Expenses,
+                            Person.Email = User().Email
+                        ), Total
+                    )}"
+                Width: =Parent.Width - 40
+                X: =20
+                Y: =75
+                ZIndex: =4
+
+            lblPickTemplate As label:
+                AutoHeight: =true
+                Color: =gblAppStyles.neutralLight.rgba
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Lighter
+                Height: =70
+                Size: =gblAppStyles.font.medium
+                Text: ="Quick Create"
+                Width: =Parent.Width - 40
+                X: =20
+                Y: =395
+                ZIndex: =5
+
+            glyTemplates As gallery.galleryHorizontal:
+                DelayItemLoading: =true
+                Height: =203
+                Items: |-
+                    =Table(
+                        {
+                           Title: "Travel",
+                           Action: "",
+                           Image: travel
+                        },
+                           {
+                           Title: "Internet",
+                           Action: "",
+                           Image: internet
+                        },
+                           {
+                           Title: "Lunch",
+                           Action: "",
+                           Image: lunch
+                        }
+                    )
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =Navigate('Add Expense Screen', ScreenTransition.None, {lclTemplateValue: ThisItem.Title})
+                ShowScrollbar: =false
+                TemplatePadding: =20
+                TemplateSize: =200
+                Y: =426
+                ZIndex: =6
+
+                btnTemplate As button:
+                    Align: =Align.Left
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =0
+                    Color: =gblAppStyles.body.rgba
+                    Fill: |
+                        =gblAppStyles.white.rgba
+                    Font: =Font.'Segoe UI'
+                    Height: =Parent.TemplateHeight
+                    HoverColor: =Self.Color
+                    HoverFill: =Self.Fill
+                    OnSelect: =Select(Parent)
+                    PaddingLeft: =20
+                    PaddingTop: =30
+                    PressedColor: =Self.Color
+                    PressedFill: =Self.Fill
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =gblAppStyles.font.normal
+                    Text: =ThisItem.Title
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                icnArrowTemplate As icon.ChevronRight:
+                    Color: =gblAppStyles.neutralStrong.rgba
+                    Height: =40
+                    Icon: =Icon.ChevronRight
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    Width: =40
+                    X: =Parent.TemplateWidth - Self.Width - 20
+                    Y: =20
+                    ZIndex: =2
+
+                imgTemplate As image:
+                    Height: =40
+                    Image: =ThisItem.Image
+                    OnSelect: =Select(Parent)
+                    Width: =40
+                    X: =20
+                    Y: =20
+                    ZIndex: =3
+
+            conBottomHome As groupContainer.manualLayoutContainer:
+                Height: =385
+                Width: =640
+                Y: =640
+                ZIndex: =8
+
+                txtBgBottom As text:
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    Fill: =gblAppStyles.white.rgba
+                    Height: =385
+                    RadiusBottomLeft: =
+                    RadiusBottomRight: =
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Size: =21
+                    Width: =640
+                    ZIndex: =1
+
+                lblAddedExpensesTitle As label:
+                    Color: =gblAppStyles.neutralStrong.rgba
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =35
+                    Size: =gblAppStyles.font.medium
+                    Text: ="Expenses Added"
+                    Width: =233
+                    X: =20
+                    Y: =30
+                    ZIndex: =2
+
+                "glyMyExpenses As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    DelayItemLoading: =true
+                    Height: =297
+                    Items: |-
+                        =FirstN(
+                            Filter(
+                            Expenses,
+                            Person.Email = User().Email
+                        ), 5
+                        )
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =15
+                    TemplateSize: =150
+                    Width: =Parent.Width
+                    Y: =86
+                    ZIndex: =3
+
+                    txtBgBottomMyExpenses As text:
+                        BorderStyle: =BorderStyle.None
+                        Default: =""
+                        DisabledFill: =ColorFade(gblAppStyles.neutralLight.rgba, 70%)
+                        DisplayMode: =DisplayMode.Disabled
+                        Fill: =gblAppStyles.white.rgba
+                        Height: =150
+                        RadiusBottomLeft: =50
+                        RadiusBottomRight: =50
+                        RadiusTopLeft: =50
+                        RadiusTopRight: =50
+                        Size: =21
+                        Width: =590
+                        ZIndex: =1
+
+                    Image1 As image:
+                        Height: =72
+                        OnSelect: =Select(Parent)
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Visible: =false
+                        Width: =72
+                        X: =16
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =2
+
+                    NextArrow1 As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        Color: =RGBA(166, 166, 166, 1)
+                        Height: =50
+                        Icon: =Icon.ChevronRight
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =16
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =16
+                        Tooltip: ="View item details"
+                        Width: =50
+                        X: =Parent.TemplateWidth - Self.Width - 12
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =3
+
+                    Separator1 As rectangle:
+                        Height: =8
+                        OnSelect: =Select(Parent)
+                        Width: =Parent.TemplateWidth
+                        Y: =Parent.TemplateHeight - Self.Height
+                        ZIndex: =4
+
+                    Rectangle1 As rectangle:
+                        Height: =Parent.TemplateHeight - Separator1.Height
+                        OnSelect: =Select(Parent)
+                        Visible: =ThisItem.IsSelected
+                        Width: =4
+                        ZIndex: =5
+
+                    lblMyExpensesDescription As label:
+                        Color: =gblAppStyles.body.rgba
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =58
+                        OnSelect: =Select(Parent)
+                        PaddingLeft: =0
+                        Size: =gblAppStyles.font.normal
+                        Text: =ThisItem.'Description '
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =356
+                        X: =40
+                        Y: =lblMyExpensesDate.Y + lblMyExpensesDate.Height + 10
+                        ZIndex: =6
+
+                    lblMyExpensesDate As label:
+                        Align: =Align.Center
+                        Color: =gblAppStyles.neutralStrong.rgba
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =25
+                        PaddingLeft: =0
+                        Size: =gblAppStyles.font.small
+                        Text: =Text(ThisItem.Date, DateTimeFormat.ShortDate)
+                        Width: =128
+                        X: =150
+                        Y: =20
+                        ZIndex: =7
+
+                    txtMyExpensesCategory As text:
+                        Align: =Align.Center
+                        BorderThickness: =1
+                        Default: =ThisItem.Category.Value
+                        DisabledBorderColor: =ColorFade(Self.DisabledFill, -60)
+                        DisabledColor: =ColorFade(Self.DisabledFill, -60)
+                        DisabledFill: |-
+                            =Switch(
+                                ThisItem.Category.Value,
+                                "Travel", RGBA(212, 231, 246,1),
+                                "Lunch", RGBA(202, 240, 204,1),
+                                "Internet", RGBA(255, 235, 135,1),
+                                "Other", RGBA(250, 187, 195,1)
+                            )
+                        DisplayMode: =DisplayMode.Disabled
+                        Font: =Font.'Segoe UI'
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =50
+                        RadiusBottomRight: =50
+                        RadiusTopLeft: =50
+                        RadiusTopRight: =50
+                        Size: =gblAppStyles.font.small
+                        Width: =100
+                        X: =40
+                        Y: =20
+                        ZIndex: =8
+
+                    lblMyExpensesTotal As label:
+                        Align: =Align.Right
+                        Color: =gblAppStyles.body.rgba
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =55
+                        OnSelect: =Select(Parent)
+                        PaddingLeft: =0
+                        Size: =gblAppStyles.font.large
+                        Text: |-
+                            =Text(ThisItem.Total, "##.00")
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =252
+                        X: =298
+                        Y: =Parent.TemplateHeight /  2 - (Self.Height + lblMyExpensesDate_1.Height) / 2
+                        ZIndex: =9
+
+                    lblMyExpensesDate_1 As label:
+                        Align: =Align.Right
+                        Color: =gblAppStyles.neutralStrong.rgba
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =FontWeight.Semibold
+                        Height: =31
+                        PaddingLeft: =0
+                        Size: =gblAppStyles.font.small
+                        Text: =ThisItem.'Currency '.Value
+                        Width: =125
+                        X: =lblMyExpensesTotal.X + lblMyExpensesTotal.Width - Self.Width
+                        Y: =lblMyExpensesTotal.Y + lblMyExpensesTotal.Height
+                        ZIndex: =10
+
+                    Circle1 As circle:
+                        Fill: |-
+                            =Switch(
+                                ThisItem.Status.Value,
+                                "Declined",RGBA(250,187,195,1),
+                                "Approved", RGBA(202,240,204,1),
+                                RGBA(212,231,246,1))
+                        Height: =20
+                        OnSelect: =Select(Parent)
+                        Tooltip: =ThisItem.Status.Value
+                        Width: =20
+                        X: =313
+                        Y: =23
+                        ZIndex: =11
+
+                lblAddedExpensesTitle_5 As label:
+                    Align: =Align.Right
+                    Color: =RGBA(0, 121, 187, 1)
+                    Font: =Font.'Segoe UI'
+                    Height: =35
+                    OnSelect: =Navigate('Overview Expense Screen')
+                    Size: =gblAppStyles.font.medium
+                    Text: ="Select All"
+                    Underline: =true
+                    Width: =205
+                    X: =385
+                    Y: =30
+                    ZIndex: =4
+
+            conChart As groupContainer.manualLayoutContainer:
+                Height: =266
+                Width: =Parent.Width - 50   
+                X: =20
+                Y: =120
+                ZIndex: =10
+
+                txtBgChart As text:
+                    Color: =RGBA(149, 149, 149, 1)
+                    Default: =""
+                    DisplayMode: =DisplayMode.View
+                    Fill: =RGBA(51, 51, 51, 1)
+                    Height: =246
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Size: =21
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                LineChart1 As lineChart:
+                    GridStyle: =GridStyle.None
+                    Height: =246
+                    ItemColorSet: =[gblAppStyles.primaryAccent.rgba]
+                    Items: |-
+                        =With(
+                            {
+                                varSource:
+                                Filter(
+                                    Expenses,
+                                    Person.Email = User().Email)
+                            },
+                            AddColumns(
+                            GroupBy(
+                                AddColumns(
+                                varSource,
+                                "Month", 
+                                Text(Date,"mmmm")
+                        
+                            ),
+                            "Month", "MonthGrouped"
+                            ), "Total",Sum(ThisRecord.MonthGrouped, Total)
+                            )
+                        )
+                    Width: =575
+                    X: =15
+                    ZIndex: =4
+
+                lblExpensesAddedTitle_2 As label:
+                    Color: =gblAppStyles.neutralLight.rgba
+                    Font: =Font.'Segoe UI'
+                    Height: =36
+                    Size: =gblAppStyles.font.small
+                    Text: ="Total spent by month"
+                    Width: =201
+                    X: =27
+                    Y: =21
+                    ZIndex: =5
+
+    shpBgNav As rectangle:
+        BorderColor: =gblAppStyles.neutralLight.rgba
+        BorderThickness: =1
+        Fill: =gblAppStyles.white.rgba
+        Height: =120
+        Width: =Parent.Width
+        Y: =Parent.Height - Self.Height
+        ZIndex: =2
+
+    glyNavigation As gallery.galleryHorizontal:
+        DelayItemLoading: =true
+        Height: =Parent.Height - Self.Y
+        Items: |-
+            =Table(
+                {
+                    Title: "Home",
+                    Screen: 'Home Screen'
+                },
+                {
+                    Title: "Expenses",
+                    Screen: 'Overview Expense Screen'
+                },
+                {
+                    Title: "Add",
+                    Screen: 'Add Expense Screen'
+                },
+                {
+                    Title: "Policy",
+                    Screen: 'Policy Screen'
+                },
+                    {
+                    Title: "Settings",
+                    Screen: App.ActiveScreen
+                }
+            )
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: =Navigate(ThisItem.Screen, ScreenTransition.Cover)
+        ShowScrollbar: =false
+        TemplatePadding: =0
+        TemplateSize: =Parent.Width / 5
+        Y: =shpBgNav.Y - 20
+        ZIndex: =3
+
+        lblNavTitle As label:
+            Align: =Align.Center
+            AutoHeight: =true
+            Font: =Font.'Segoe UI'
+            Height: =70
+            OnSelect: =Select(Parent)
+            Size: =gblAppStyles.font.normal
+            Text: =ThisItem.Title
+            Visible: =imgNav.Visible
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =1
+
+        imgNav As image:
+            Height: =Self.Width
+            Image: |-
+                =Switch(
+                    ThisItem.Title,
+                    "Home",
+                    "data:image/svg+xml," & EncodeUrl(
+                "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M10.55 2.532a2.25 2.25 0 0 1 2.9 0l6.75 5.692c.507.428.8 1.057.8 1.72v9.803a1.75 1.75 0 0 1-1.75 1.75h-3.5a1.75 1.75 0 0 1-1.75-1.75v-5.5a.25.25 0 0 0-.25-.25h-3.5a.25.25 0 0 0-.25.25v5.5a1.75 1.75 0 0 1-1.75 1.75h-3.5A1.75 1.75 0 0 1 3 19.747V9.944c0-.663.293-1.292.8-1.72l6.75-5.692Zm1.933 1.147a.75.75 0 0 0-.966 0L4.767 9.37a.75.75 0 0 0-.267.573v9.803c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25v-5.5c0-.967.784-1.75 1.75-1.75h3.5c.966 0 1.75.783 1.75 1.75v5.5c0 .138.112.25.25.25h3.5a.25.25 0 0 0 .25-.25V9.944a.75.75 0 0 0-.267-.573l-6.75-5.692Z' fill='#000000'/></svg>"
+                 ),
+                
+                 "Expenses",
+                    "data:image/svg+xml," & EncodeUrl(
+                "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M5 6.25A2.25 2.25 0 0 1 7.25 4h8.5A2.25 2.25 0 0 1 18 6.25V14h3.5v3.25a3.25 3.25 0 0 1-3.25 3.25H13V19h3.5V6.25a.75.75 0 0 0-.75-.75h-8.5a.75.75 0 0 0-.75.75V14H5V6.25ZM18 19h.25A1.75 1.75 0 0 0 20 17.25V15.5h-2V19Zm-3.75-2.5H13a2.49 2.49 0 0 0-.5-1.5h1.75a.75.75 0 0 1 0 1.5ZM8 8.75A.75.75 0 0 1 8.75 8h5.5a.75.75 0 0 1 0 1.5h-5.5A.75.75 0 0 1 8 8.75Zm0 3.5a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 0 1.5h-5.5a.75.75 0 0 1-.75-.75ZM1 16.5A1.5 1.5 0 0 1 2.5 15h8a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 1 20.5v-4Zm10 .5a1 1 0 0 1-1-1H9a2 2 0 0 0 2 2v-1Zm0 2a2 2 0 0 0-2 2h1a1 1 0 0 1 1-1v-1Zm-8-3a1 1 0 0 1-1 1v1a2 2 0 0 0 2-2H3Zm1 5a2 2 0 0 0-2-2v1a1 1 0 0 1 1 1h1Zm4.25-2.5a1.75 1.75 0 1 0-3.5 0 1.75 1.75 0 0 0 3.5 0Z' fill='#212121'/></svg>"
+                 ),
+                 // Used for default
+                 "Add",
+                    "data:image/svg+xml," & EncodeUrl(
+                ""
+                 ),
+                 "Policy",
+                    "data:image/svg+xml," & EncodeUrl(
+                "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M8.247 2a.75.75 0 0 1 .102 1.493l-.102.007h-3.5a1.25 1.25 0 0 0-1.243 1.122l-.007.128v3.502a.75.75 0 0 1-1.493.102l-.007-.102V4.75A2.75 2.75 0 0 1 4.58 2.005L4.747 2h3.5ZM3.49 15.648a.75.75 0 0 0-1.486 0l-.007.102v3.502l.005.175a2.75 2.75 0 0 0 2.578 2.57l.167.005h3.5l.102-.006a.75.75 0 0 0 0-1.487l-.102-.007h-3.5l-.128-.006a1.25 1.25 0 0 1-1.115-1.116l-.007-.128V15.75l-.007-.102ZM21.99 15.648a.75.75 0 0 0-1.493.102v3.502l-.006.128a1.25 1.25 0 0 1-1.244 1.122h-3.5l-.102.007a.75.75 0 0 0 .102 1.493h3.5l.168-.005a2.75 2.75 0 0 0 2.582-2.745V15.75l-.007-.102ZM19.415 2.005 19.247 2h-3.5l-.102.007a.75.75 0 0 0 0 1.486l.102.007h3.5l.128.006a1.25 1.25 0 0 1 1.116 1.116l.006.128v3.502l.007.102a.75.75 0 0 0 1.486 0l.007-.102V4.75l-.005-.174a2.75 2.75 0 0 0-2.577-2.571ZM6.202 11.764l.008-.02.044-.1c.043-.09.11-.226.206-.391.194-.332.5-.777.945-1.223.88-.88 2.32-1.78 4.595-1.78 2.274 0 3.715.9 4.595 1.78.445.446.751.891.945 1.223a4.776 4.776 0 0 1 .25.49l.008.021c.15.38.579.583.965.438a.75.75 0 0 0 .44-.965l-.001-.002-.001-.002-.002-.005-.006-.015a3.204 3.204 0 0 0-.087-.2 6.294 6.294 0 0 0-.27-.516 7.573 7.573 0 0 0-1.18-1.527C16.534 7.85 14.725 6.75 12 6.75c-2.726 0-4.535 1.1-5.655 2.22a7.573 7.573 0 0 0-1.18 1.527 6.262 6.262 0 0 0-.358.716l-.006.015c-.002.005-.162.75.436.974a.75.75 0 0 0 .964-.436l.001-.002Z' fill='#212121'/><path d='M12 10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-2 3.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z' fill='#212121'/></svg>
+                "
+                 ),
+                 "Settings",
+                    "data:image/svg+xml," & EncodeUrl(
+                "<svg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252Zm0 1.5a9.135 9.135 0 0 0-1.354.117l-.109.977A2.886 2.886 0 0 1 6.525 7.17l-.898-.394a8.293 8.293 0 0 0-1.348 2.317l.798.587a2.881 2.881 0 0 1 0 4.643l-.799.588c.32.842.776 1.626 1.348 2.322l.905-.397a2.882 2.882 0 0 1 4.017 2.318l.11.984c.889.15 1.798.15 2.687 0l.11-.984a2.881 2.881 0 0 1 4.018-2.322l.905.396a8.296 8.296 0 0 0 1.347-2.318l-.798-.588a2.881 2.881 0 0 1 0-4.643l.796-.587a8.293 8.293 0 0 0-1.348-2.317l-.896.393a2.884 2.884 0 0 1-4.023-2.324l-.11-.976a8.988 8.988 0 0 0-1.333-.117ZM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5Zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z' fill='#212121'/></svg>"
+                 )
+                )
+            OnSelect: =Select(Parent)
+            Visible: =!(ThisItem.Title = "Add")
+            Width: =40
+            X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
+            Y: =40
+            ZIndex: =2
+
+        btnOverlay As button:
+            Fill: =RGBA(56, 96, 178, 0)
+            Height: =Parent.TemplateHeight
+            HoverFill: =Self.Fill
+            OnSelect: =Select(Parent)
+            PressedFill: =Self.Fill
+            Size: =24
+            Text: =""
+            Visible: =imgNav.Visible
+            Width: =Parent.TemplateWidth
+            ZIndex: =4
+
+        btnNavMain As button:
+            BorderStyle: =BorderStyle.None
+            Fill: =gblAppStyles.primaryAccent.rgba
+            FontWeight: =FontWeight.Lighter
+            Height: =Self.Width
+            HoverFill: =ColorFade(Self.Fill, -20%)
+            OnSelect: =Select(Parent)
+            PressedColor: =Self.Color
+            PressedFill: =ColorFade(Self.Fill, -30%)
+            RadiusBottomLeft: =Self.RadiusTopLeft
+            RadiusBottomRight: =Self.RadiusBottomLeft
+            RadiusTopLeft: =Self.Width
+            RadiusTopRight: =Self.RadiusTopLeft
+            Size: =50
+            Text: ="+"
+            Visible: =!imgNav.Visible
+            Width: =118
+            X: =Parent.TemplateWidth / 2 - Self.Width / 2
+            Y: =22
+            ZIndex: =5
+

@@ -1,0 +1,51 @@
+{
+  "4a2d398b-e795-4223-b467-79c378663b0c": {
+    "appActions": [
+      "Manager_V2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1659/1.0.1659.3460/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4a2d398b-e795-4223-b467-79c378663b0c"
+  },
+  "5ee67b90-f1a5-4920-940a-2a69f3d53651": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/henryorsborn/partial-builds/asev3migrations-with-resourceTemplate/1.0.1653.3414/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://nortonrosefulbrightsa-my.sharepoint.com/personal/innocent_rathogwa_nortonrosefulbright_com": {
+        "dataSources": {
+          "Expenses": {
+            "tableName": "02ba3e46-fecd-4041-9a92-d8c72b6d20f8"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Expenses"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "5ee67b90-f1a5-4920-940a-2a69f3d53651"
+  }
+}
