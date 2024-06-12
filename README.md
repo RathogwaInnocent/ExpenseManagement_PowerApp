@@ -3,7 +3,7 @@ Expense Managment is a Canvas APP designed and developed within Power APPS with 
 
 <img width="192" alt="Screenshot_0" src="https://github.com/RathogwaInnocent/ExpenseManagement_PowerApp/assets/17208775/532925a8-c98a-497a-bff7-ebf3accc89a2">
 
->>> This screen is for the pre-loader.
+>>> This screen is for the pre-loader...
 
 
 <img width="226" alt="Screenshot_1" src="https://github.com/RathogwaInnocent/ExpenseManagement_PowerApp/assets/17208775/2e7b314f-c86d-4e44-91ec-47fe67b82da3">
